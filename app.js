@@ -2,12 +2,19 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session')
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['QMpyCbzri8uiN0SSW8^h1-BK', 'IV*O7HFA#wU9ewUdrlTpjQ25'],
+  maxAge: 2 * 60 * 60 * 1000
+}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

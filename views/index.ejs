@@ -6,6 +6,21 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    
+    <table>
+      <% for (var fila = 0; fila < 3; fila++) { %>
+        <tr>
+        <% for (var columna = 0; columna < 3; columna++) { %>
+          <% if (tablero[fila][columna] == 1) { %>
+            <td>O</td>
+          <% } else if (tablero[fila][columna] == 2) { %>
+            <td>X</td>
+          <% } else { %>
+            <td>&nbsp;</td> 
+          <% } %>
+        <% } %>
+      </tr>
+      <% } %>
+    </table>
   </body>
 </html>
