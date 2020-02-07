@@ -16,7 +16,13 @@
           <% } else if (tablero[fila][columna] == 2) { %>
             <td>X</td>
           <% } else { %>
-            <td>&nbsp;</td> 
+            <td>
+              <form action="" method="post">
+                <input type="hidden" name="fila" value="<%= fila %>" />
+                <input type="hidden" name="columna" value="<%= columna %>" />
+                <input type="submit" value="X"/>
+              </form>
+            </td> 
           <% } %>
         <% } %>
       </tr>
