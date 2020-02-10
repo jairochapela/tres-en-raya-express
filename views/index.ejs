@@ -17,16 +17,30 @@
             <td>X</td>
           <% } else { %>
             <td>
+              <% if (meToca) { %>
               <form action="/ponerficha" method="post">
                 <input type="hidden" name="fila" value="<%= fila %>" />
                 <input type="hidden" name="columna" value="<%= columna %>" />
-                <input type="submit" value="X"/>
+                <input type="submit" value="Jugar"/>
               </form>
+              <% } %>
             </td> 
           <% } %>
         <% } %>
       </tr>
       <% } %>
     </table>
+
+    <% if (!meToca) { %>
+      <script>
+        setInterval(function () {
+          fetch('/miturno').then(function(response) {
+            if (response.ok) {
+              location.reload();
+            }
+          })
+        }, 3000);
+      </script>
+    <% } %>
   </body>
 </html>
