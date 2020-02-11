@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { comprobarGanador } = require('../juego/comprobaciones');
 
 const tablero = [
   [0, 0, 0],
@@ -20,8 +21,15 @@ router.get('/', function(req, res, next) {
     }
     session.jugador = jugadores;
   }
-  const meToca = (turno == session.jugador);
-  res.render('index', { title: 'Tres en raya', tablero, meToca });
+
+  const ganador = comprobarGanador(tablero);
+
+  if (ganador != 0) {
+    res.render('winner', {ganador});
+  } else {
+    const meToca = (turno == session.jugador);
+    res.render('index', { title: 'Tres en raya', tablero, meToca });
+  }
 });
 
 router.post('/ponerficha', function(req, res, next) {
